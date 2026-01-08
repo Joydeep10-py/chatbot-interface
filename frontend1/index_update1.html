@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot - Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style_update1.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-form-container">
+            <div class="form-box login-form active">
+                <h2 class="login-welcome-back">Welcome Back</h2>
+                <p class="login-subtitle">Login to your account</p>
+                
+                <form id="loginForm">
+                    <div class="login-input-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="login-input-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="login-options">
+                        <label class="remember">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ChatBot Interface (Hidden initially) -->
+    <div class="chatbot-wrapper" id="chatbotPage"">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Sidebar Header with Logo -->
+            <div class="sidebar-brand">
+                <h2>MindSpace AI</h2>
+                <!-- <span class="material-symbols-rounded brand-icon">forum</span> -->
+            </div>
+            
+            <!-- Menu Section -->
+            <div class="sidebar-section">
+                <h3 class="section-title">MENU</h3>
+                <ul class="sidebar-menu">
+                    <li onclick="switchTab('chat')" class="menu-item" id="menu-chat">
+                        <span class="material-symbols-rounded">chat</span>
+                        <span>Therapy Chat</span>
+                    </li>
+                    <li onclick="switchTab('dashboard')" class="menu-item-unselected" id="menu-dashboard">
+                        <span class="material-symbols-rounded">trending_up</span>
+                        <span>User Dashboard</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- History Section -->
+            <div class="sidebar-section history-section">
+                <div class="section-header">
+                    <h3 class="section-title">HISTORY</h3>
+                    <button class="new-chat-btn">
+                        <span class="material-symbols-rounded">add</span>
+                        <span>New</span>
+                    </button>
+                </div>
+                <ul class="recent-chats">
+                    <li class="recent-chat-item active">
+                        <span class="material-symbols-rounded chat-icon">chat_bubble</span>
+                        <span>hello</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Admin Section at Bottom -->
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="admin-avatar">
+                        <span>A</span>
+                    </div>
+                    <div class="admin-info">
+                        <p class="admin-name" id="current-user-display">admin</p>
+                        <p class="admin-status">Online</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <!-- TAB : Chats Container -->
+        <div class="container" id="tab-chat">
+
+            <!-- Chat Header Section -->
+            <header class="app-header">
+                <h1 class="heading">Hello, there</h1>
+                <h2 class="sub-heading">How can I help you today?</h2>
+            </header>
+
+            <!-- Suggestion List -->
+            <ul class="suggestions">
+                <li class="suggestions-item">
+                    <p class="text">Does this application respect individual's privacy</p>
+                    <span class="material-symbols-rounded">draw</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">How can I level up my office work expertise in 2026</p>
+                    <span class="material-symbols-rounded">lightbulb</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">Suggest some useful tools for debugging Python code</p>
+                    <span class="material-symbols-rounded">explore</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">Create a simple schedule for work-life balance</p>
+                    <span class="material-symbols-rounded">code_blocks</span>
+                </li>
+            </ul>
+
+            <!-- Chats Container -->
+            <div class="chats-container"></div>
+
+            <!-- Prompt Container -->
+            <div class="prompt-container">
+                <div class="prompt-wrapper">
+                    <form action="#" class="prompt-form">
+                        <input type="text" placeholder="Ask AI" class="prompt-input" required>
+                        <div class="prompt-actions">
+                            <button id="send-prompt-btn" class="material-symbols-rounded">send</button>
+                        </div>
+                    </form>
+                    <button id="toggle-btn" class="material-symbols-rounded">light_mode</button>
+                    <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
+                </div>
+                <p class="disclaimer-text">AI can make mistakes, so double check it</p>
+            </div>
+        </div>
+        <!--TAB : Dashboard  -->
+        <div class="user-dashboard hidden" id="tab-dashboard"></div>
+    </div>
+
+    <script src="script4.js"></script>
+</body>
+</html>
