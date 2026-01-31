@@ -475,7 +475,7 @@ body {
 }
 
 /* Temporary display off */
-.container :is(.app-header, .suggestions){
+.container.is-hidden :is(.app-header, .suggestions){
     display: none;
 }
 
