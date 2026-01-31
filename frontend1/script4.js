@@ -1,4 +1,5 @@
 const API_BASE = 'http://127.0.0.1:8000/';
+const container = document.querySelector('.container');
 
 // ========== LOGIN PAGE FUNCTIONALITY ==========
 const loginPage = document.getElementById('loginPage');
@@ -131,6 +132,12 @@ const sidebar = document.querySelector(".sidebar");
 const sidebarToggle = document.querySelector(".sidebar-toggle");
 
 let userMessage = "";
+
+document.getElementById("send-prompt-btn").addEventListener('click',
+    function(e){
+        container.classList.toggle('is-hidden')
+    }
+)
 
 // Function to create message elements
 const createMsgElement = (content, ...classes) => {
