@@ -172,12 +172,12 @@ body {
     overflow-x: hidden;
 }
 
-/* ========== NEW SIDEBAR STYLES ========== */
+/* ========== SIDEBAR STYLES (CLEANED - NO DUPLICATES) ========== */
 .sidebar {
     width: 260px;
     height: 100vh;
-    background: var(--secondary-color);
-    border-right: 1px solid var(--secondary-hover-color);
+    background: #0a0e1a;
+    border-right: 1px solid #1a1f2e;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -193,82 +193,70 @@ body {
 
 /* Sidebar Brand/Header */
 .sidebar-brand {
-    padding: 20px;
-    border-bottom: 1px solid var(--secondary-hover-color);
+    padding: 25px 20px;
+    border-bottom: 1px solid #1a1f2e;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .sidebar-brand h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: var(--text-color);
     font-weight: 600;
-}
-
-.sidebar-brand .brand-icon {
-    font-size: 1.3rem;
-    color: var(--text-color);
-    background: var(--secondary-hover-color);
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid var(--scrollbar-color);
+    text-align: center;
 }
 
 /* Sidebar Sections */
 .sidebar-section {
     padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: none;
 }
 
 .section-title {
     padding: 0 20px;
-    font-size: 0.75rem;
-    color: var(--placeholder-color);
+    font-size: 0.7rem;
+    color: #4a5568;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
     margin-bottom: 15px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* Menu Items */
 .sidebar-menu {
     list-style: none;
+    padding: 0 15px;
 }
 
 .menu-item,
 .menu-item-unselected {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-
-.menu-item, .menu-item-unselected {
-    padding: 12px 20px;
+    padding: 14px 15px;
+    margin-bottom: 8px;
     cursor: pointer;
-    transition: 0.2s ease;
-    color: var(--text-color);
+    transition: all 0.3s ease;
+    color: #8892a6;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: 12px;
+    border-radius: 12px;
+    font-weight: 500;
 }
 
-.menu-item:hover {
-    background: var(--secondary-hover-color);
-}
-
-.menu-item .material-symbols-rounded {
-    font-size: 1.3rem;
+.menu-item {
+    background: #1e2a3a;
+    color: var(--text-color);
 }
 
 .menu-item-unselected:hover {
-    background: var(--secondary-hover-color);
+    background: #151b26;
+    color: var(--text-color);
 }
 
+.menu-item .material-symbols-rounded,
 .menu-item-unselected .material-symbols-rounded {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 /* History Section */
@@ -277,6 +265,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
 }
 
 .history-section::-webkit-scrollbar {
@@ -284,11 +273,11 @@ body {
 }
 
 .history-section::-webkit-scrollbar-track {
-    background: var(--secondary-color);
+    background: transparent;
 }
 
 .history-section::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-color);
+    background: #2a3544;
     border-radius: 10px;
 }
 
@@ -303,12 +292,12 @@ body {
 .new-chat-btn {
     background: none;
     border: none;
-    color: #1d7efd;
+    color: #4a90e2;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     transition: 0.2s ease;
     padding: 4px 8px;
@@ -316,7 +305,7 @@ body {
 }
 
 .new-chat-btn:hover {
-    background: var(--secondary-hover-color);
+    background: #151b26;
 }
 
 .new-chat-btn .material-symbols-rounded {
@@ -326,75 +315,106 @@ body {
 /* Recent Chats */
 .recent-chats {
     list-style: none;
+    padding: 0 15px;
 }
 
 .recent-chat-item {
-    padding: 12px 20px;
+    padding: 12px 15px;
+    margin-bottom: 6px;
     cursor: pointer;
     transition: 0.2s ease;
-    color: var(--subheading-color);
+    color: #8892a6;
     font-size: 0.9rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
+    border-radius: 10px;
+    line-height: 1.4;
 }
 
 .recent-chat-item:hover {
-    background: var(--secondary-hover-color);
+    background: #151b26;
     color: var(--text-color);
 }
 
 .recent-chat-item.active {
-    background: var(--secondary-hover-color);
+    background: #151b26;
     color: var(--text-color);
-    border-left: 3px solid #1d7efd;
 }
 
 .recent-chat-item .chat-icon {
-    font-size: 1.2rem;
-}
-
-/* Admin Footer Section */
-.sidebar-footer {
-    padding: 16px 20px;
-    border-top: 1px solid var(--secondary-hover-color);
-    margin-top: auto;
-}
-
-.admin-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.admin-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #1d7efd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 600;
     font-size: 1.1rem;
-    flex-shrink: 0;
+    margin-top: 2px;
 }
 
-.admin-info {
+.recent-chat-item span:last-child {
     flex: 1;
+    word-break: break-word;
 }
 
-.admin-name {
-    font-size: 0.95rem;
-    color: var(--text-color);
+.recent-chat-item .chat-time {
+    font-size: 0.75rem;
+    color: #5a6379;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Footer Buttons Section */
+.sidebar-footer {
+    padding: 15px;
+    border-top: 1px solid #1a1f2e;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.therapist-btn,
+.logout-btn {
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 0.9rem;
     font-weight: 500;
-    margin-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 
-.admin-status {
-    font-size: 0.8rem;
-    color: var(--subheading-color);
+/* Talk to Human Therapist Button */
+.therapist-btn {
+    color: var(--text-color);
+    border: 1px solid #2a3544;
+}
+
+.therapist-btn:hover {
+    background: #151b26;
+    border-color: #3a4554;
+}
+
+.therapist-btn .material-symbols-rounded {
+    font-size: 1.3rem;
+    color: #c94b6e;
+}
+
+/* Logout Button */
+.logout-btn {
+    color: #e85d75;
+    border: 1px solid #3d2535;
+}
+
+.logout-btn:hover {
+    background: rgba(232, 93, 117, 0.1);
+    border-color: #4d3040;
+}
+
+.logout-btn .material-symbols-rounded {
+    font-size: 1.3rem;
+    color: #e85d75;
 }
 
 /* Sidebar Toggle Button - Hidden on Desktop */
@@ -667,15 +687,431 @@ body {
     color: var(--placeholder-color);
 }
 
-/* USER DASHBOARD */
-/* .user-dashboard {
-    margin-left: 280px;
+/* ========== USER DASHBOARD STYLES ========== */
+.user-dashboard {
     padding: 40px;
-    min-height: 100vh;
+    margin-left: 280px;
     width: calc(100% - 280px);
-    background: var(--primary-color);
-} */
+    transition: 0.3s ease;
+}
 
+.sidebar.collapsed ~ .user-dashboard {
+    margin-left: 0;
+    width: 100%;
+}
+
+.dashboard-banner {
+    background: linear-gradient(to right, #3f31d1, #8f6fff);
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.dashboard-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.dashboard-banner p {
+    color: var(--placeholder-color);
+    font-size: 1rem;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.dash-card {
+    background: var(--secondary-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dash-card h3 {
+    color: var(--text-color);
+    font-size: 1.4rem;
+}
+
+.dash-card p {
+    color: var(--subheading-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box span { font-size: 1.8rem; }
+
+/* Icon Backgrounds from Image */
+.chat-icon-bg { background: var(--primary-color); color: #3f31d1; }
+.team-icon-bg { background: var(--primary-color); color: #28a745; }
+.info-icon-bg { background: var(--primary-color); color: #f39c12; }
+
+.card-link {
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+.chat-link { color: #1d7efd; }
+.team-link { color: #28a745; }
+.info-link { color: #f39c12; }
+
+/* ========== MODAL STYLES ========== */
+.modal-overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-overlay1.active {
+    display: flex;
+}
+
+.modal-box1 {
+    background: var(--secondary-color);
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid var(--secondary-hover-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Close Button Style */
+.modal-close1 {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    background: #ff4b91; 
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 75, 145, 0.3);
+    transition: 0.3s;
+}
+
+.modal-close1:hover {
+    transform: scale(1.1);
+    background: #e03a7a;
+}
+
+.modal-title1 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.instruction-text {
+    line-height: 1.8;
+    color: var(--subheading-color);
+    margin-bottom: 25px;
+}
+
+.benefit-section1 {
+    background: var(--primary-color);
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid #8f6fff;
+}
+
+.benefit-label {
+    font-weight: 600;
+    color: #8f6fff;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.benefit-text {
+    color: var(--text-color);
+}
+
+/* ========== PSYCHOLOGICAL SUMMARY STYLES ========== */
+.psychological-summary {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #1a2332 0%, #22304a 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--secondary-hover-color);
+}
+
+.summary-title {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.summary-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.profile-section {
+    flex-shrink: 0;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #3f31d1;
+    box-shadow: 0 8px 25px rgba(63, 49, 209, 0.4);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.summary-text-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.summary-quote {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #b8c5e0;
+    font-style: italic;
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid #8f6fff;
+}
+
+.summary-badges {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.badge-regulated {
+    color: #4a90e2;
+    border-color: #4a90e2;
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.badge-regulated:hover {
+    background: rgba(74, 144, 226, 0.2);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.badge-resilient {
+    color: #50c878;
+    border-color: #50c878;
+    background: rgba(80, 200, 120, 0.1);
+}
+
+.badge-resilient:hover {
+    background: rgba(80, 200, 120, 0.2);
+    box-shadow: 0 4px 15px rgba(80, 200, 120, 0.3);
+}
+
+.badge-functioning {
+    color: #9b59b6;
+    border-color: #9b59b6;
+    background: rgba(155, 89, 182, 0.1);
+}
+
+.badge-functioning:hover {
+    background: rgba(155, 89, 182, 0.2);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+/* ========== PSYCHOLOGICAL INSIGHTS STYLES ========== */
+.psychological-insights {
+    margin-top: 40px;
+    padding: 35px;
+    background: #0d1420;
+    border-radius: 20px;
+    border: 1px solid #1a2332;
+}
+
+.insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.insights-title-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.insights-indicator {
+    width: 12px;
+    height: 12px;
+    background: #4a90e2;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(74, 144, 226, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+.insights-title {
+    font-size: 0.85rem;
+    color: #6b7a99;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.daily-analysis-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: #4a90e2;
+    border: 1px solid #2a3d5a;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.daily-analysis-btn:hover {
+    background: rgba(74, 144, 226, 0.1);
+    border-color: #4a90e2;
+}
+
+.insights-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.insight-card {
+    background: linear-gradient(135deg, #141d2e 0%, #1a2536 100%);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #1f2d42;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.insight-card:hover {
+    transform: translateX(5px);
+    border-color: #2a4060;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.insight-heading {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.insight-description {
+    font-size: 0.95rem;
+    color: #7a8aa8;
+    line-height: 1.6;
+}
+
+/* Responsive Design for Psychological Insights */
+@media (max-width: 768px) {
+    .psychological-insights {
+        padding: 25px;
+        margin-top: 30px;
+    }
+    
+    .insights-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .insights-title {
+        font-size: 0.75rem;
+    }
+    
+    .daily-analysis-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .insight-card {
+        padding: 20px;
+    }
+    
+    .insight-heading {
+        font-size: 1.1rem;
+    }
+    
+    .insight-description {
+        font-size: 0.9rem;
+    }
+}
 
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
@@ -723,5 +1159,49 @@ body {
     
     .app-header .sub-heading {
         font-size: 2rem;
+    }
+
+    /* Dashboard Responsive */
+    .user-dashboard {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    /* Psychological Summary Responsive */
+    .psychological-summary {
+        padding: 25px;
+    }
+    
+    .summary-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .summary-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .summary-quote {
+        padding-left: 0;
+        border-left: none;
+        border-top: 3px solid #8f6fff;
+        padding-top: 15px;
+        font-size: 1rem;
+    }
+    
+    .summary-badges {
+        justify-content: center;
+    }
+    
+    .badge {
+        font-size: 0.75rem;
+        padding: 8px 16px;
     }
 }
