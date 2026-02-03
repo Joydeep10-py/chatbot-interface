@@ -6,6 +6,14 @@ const loginPage = document.getElementById('loginPage');
 const chatbotPage = document.getElementById('chatbotPage');
 const loginForm = document.getElementById('loginForm');
 
+// Fixed: logout button event listener
+document.getElementById('logout-btn').addEventListener('click', logout);
+
+function logout() {
+    localStorage.clear();
+    showLogin();
+}
+
 // Handle login form submission
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -21,34 +29,28 @@ loginForm.addEventListener('submit', async (e) => {
     }
     
     try {
-        const response = await fetch(`${API_BASE}/login/`, {
-
+        const response = await fetch(`${API_BASE}login/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
-            });
+        });
 
-            if (!response.ok) throw new Error('Invalid credentials');
+        if (!response.ok) throw new Error('Invalid credentials');
 
-            const data = await response.json();
-                
-            // Save Tokens
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
-            localStorage.setItem('username', username); // Store username for display
-                
-            showApp();
-        } catch (err) {
-                showToast(err.message);
-        }
+        const data = await response.json();
+            
+        // Save Tokens
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+        localStorage.setItem('username', username);
+            
+        showApp();
+    } catch (err) {
+        alert(err.message);
+    }
     
     // Clear form
-    this.reset();
-
-    function logout() {
-        localStorage.clear();
-        showLogin();
-    }
+    loginForm.reset();
 });
 
 // Check if logged in on load
@@ -61,8 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
- // --- API HELPERS ---
-
+// --- API HELPERS ---
 async function authenticatedFetch(endpoint, options = {}) {
     let token = localStorage.getItem('access_token');
             
@@ -78,8 +79,6 @@ async function authenticatedFetch(endpoint, options = {}) {
     });
 
     if (response.status === 401) {
-                // Token expired - simple logout handling for now
-                // Ideally implement refresh token logic here
         logout();
         throw new Error("Session expired");
     }
@@ -88,7 +87,6 @@ async function authenticatedFetch(endpoint, options = {}) {
 }
 
 // --- UI NAVIGATION ---
-
 function showLogin() {
     document.getElementById('loginPage').classList.remove('hidden');
     document.getElementById('chatbotPage').classList.add('hidden');
@@ -97,16 +95,18 @@ function showLogin() {
 function showApp() {
     document.getElementById('loginPage').classList.add('hidden');
     document.getElementById('chatbotPage').classList.remove('hidden');
-    document.getElementById('current-user-display').textContent = localStorage.getItem('username') || 'User';
-            
-    // Load initial data
-    // loadChatHistory();
+    
+    // Fixed: Check if element exists before setting text
+    const userDisplay = document.getElementById('current-user-display');
+    if (userDisplay) {
+        userDisplay.textContent = localStorage.getItem('username') || 'User';
+    }
 }
 
 function switchTab(tabName) {
     // Reset Sidebar styles
     document.getElementById('menu-chat').className = "menu-item-unselected";
-    document.getElementById('menu-dashboard').className = "menu-item-unselected"
+    document.getElementById('menu-dashboard').className = "menu-item-unselected";
 
     // Hide all tabs
     document.getElementById('tab-chat').classList.add('hidden');
@@ -119,10 +119,8 @@ function switchTab(tabName) {
         document.getElementById('menu-chat').className = "menu-item";
     } else {
         document.getElementById('menu-dashboard').className = "menu-item";
-        // loadTeamDashboard();
     }
 }
-
 
 // ========== CHATBOT FUNCTIONALITY ==========
 const chatsContainer = document.querySelector(".chats-container");
@@ -133,11 +131,9 @@ const sidebarToggle = document.querySelector(".sidebar-toggle");
 
 let userMessage = "";
 
-document.getElementById("send-prompt-btn").addEventListener('click',
-    function(e){
-        container.classList.toggle('is-hidden')
-    }
-)
+document.getElementById("send-prompt-btn").addEventListener('click', function(e) {
+    container.classList.toggle('is-hidden');
+});
 
 // Function to create message elements
 const createMsgElement = (content, ...classes) => {
@@ -145,7 +141,7 @@ const createMsgElement = (content, ...classes) => {
     div.classList.add("message", ...classes);
     div.innerHTML = content;
     return div;
-}
+};
 
 // Handling the form submission
 const handleFormSubmit = (e) => {
@@ -168,27 +164,27 @@ const handleFormSubmit = (e) => {
         const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
         chatsContainer.appendChild(botMsgDiv);
     }, 600);
-}
+};
 
 // Toggle sidebar (for mobile)
 const toggleSidebar = () => {
     sidebar.classList.toggle("collapsed");
-}
+};
 
 // Initialize sidebar state based on screen size
 const initializeSidebar = () => {
     if (window.innerWidth <= 768) {
-        // On mobile, sidebar starts collapsed
         sidebar.classList.add("collapsed");
     } else {
-        // On desktop, sidebar is always visible
         sidebar.classList.remove("collapsed");
     }
-}
+};
 
 // Event Listeners
 promptForm.addEventListener("submit", handleFormSubmit);
-sidebarToggle.addEventListener("click", toggleSidebar);
+if (sidebarToggle) {
+    sidebarToggle.addEventListener("click", toggleSidebar);
+}
 
 // Call on page load
 window.addEventListener('load', initializeSidebar);
@@ -200,9 +196,80 @@ window.addEventListener("resize", initializeSidebar);
 const recentChatItems = document.querySelectorAll(".recent-chat-item");
 recentChatItems.forEach(item => {
     item.addEventListener("click", () => {
-        // Remove active class from all items
         recentChatItems.forEach(i => i.classList.remove("active"));
-        // Add active class to clicked item
         item.classList.add("active");
     });
+});
+
+// ========== MODAL FUNCTIONALITY ==========
+
+// Get modal elements
+const digitalBoundariesLink = document.querySelector('.chat-link');
+const digitalBoundariesModal = document.getElementById('digitalboundaries');
+const closeDigitalModal = document.getElementById('closeDigitalModal');
+
+const teamManagementLink = document.querySelector('.team-link');
+const breathingModal = document.getElementById('breathingModal');
+const closeBreathingModal = document.getElementById('closeBreathingModal');
+
+const gratitudeLoopLink = document.querySelector('.info-link');
+const gratitudeLoopModal = document.getElementById('gratitudeLoop');
+const closeGratitudeModal = document.getElementById('closeGratitudeLoop');
+
+// Open Digital Boundaries Modal
+if (digitalBoundariesLink) {
+    digitalBoundariesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        digitalBoundariesModal.classList.add('active');
+    });
+}
+
+// Open Breathing Modal
+if (teamManagementLink) {
+    teamManagementLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        breathingModal.classList.add('active');
+    });
+}
+
+// Open Gratitude Modal
+if (gratitudeLoopLink) {
+    gratitudeLoopLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        gratitudeLoopModal.classList.add('active');
+    });
+}
+
+// Close Digital Boundaries Modal
+if (closeDigitalModal) {
+    closeDigitalModal.addEventListener('click', () => {
+        digitalBoundariesModal.classList.remove('active');
+    });
+}
+
+// Close Breathing Modal
+if (closeBreathingModal) {
+    closeBreathingModal.addEventListener('click', () => {
+        breathingModal.classList.remove('active');
+    });
+}
+
+// Close Gratitude Modal
+if (closeGratitudeModal) {
+    closeGratitudeModal.addEventListener('click', () => {
+        gratitudeLoopModal.classList.remove('active');
+    });
+}
+
+// Close modals when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === breathingModal) {
+        breathingModal.classList.remove('active');
+    }
+    if (e.target === digitalBoundariesModal) {
+        digitalBoundariesModal.classList.remove('active');
+    }
+    if (e.target === gratitudeLoopModal) {
+        gratitudeLoopModal.classList.remove('active');
+    }
 });
