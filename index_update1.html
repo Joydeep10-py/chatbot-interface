@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace AI - Chatbot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style_update1.css">
+</head>
+<body>
+    <div class="login-container" id="loginPage">
+        <div class="login-form-container">
+            <div class="form-box login-form active">
+                <h2 class="login-welcome-back">Welcome Back</h2>
+                <p class="login-subtitle">Login to your account</p>
+                
+                <form id="loginForm">
+                    <div class="login-input-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="login-input-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="login-options">
+                        <label class="remember">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="chatbot-wrapper hidden" id="chatbotPage">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>MindSpace AI</h2>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="section-title">MENU</h3>
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <span class="material-symbols-rounded">chat</span>
+                        <span>New Chat</span>
+                    </li>
+                </ul>
+            </div>
+            
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logout-btn">
+                    <span class="material-symbols-rounded">logout</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <div class="container" id="main-chat-container">
+
+            <header class="app-header">
+                <h1 class="heading">Hello, there</h1>
+                <h2 class="sub-heading">How can I help you today?</h2>
+            </header>
+
+            <ul class="suggestions">
+                <li class="suggestions-item">
+                    <p class="text">I'm feeling anxious about work.</p>
+                    <span class="material-symbols-rounded">draw</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">Help me practice a difficult conversation.</p>
+                    <span class="material-symbols-rounded">lightbulb</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">I need a breathing exercise.</p>
+                    <span class="material-symbols-rounded">explore</span>
+                </li>
+                <li class="suggestions-item">
+                    <p class="text">Create a schedule for better sleep.</p>
+                    <span class="material-symbols-rounded">code_blocks</span>
+                </li>
+            </ul>
+
+            <div class="chats-container">
+            </div>
+
+            <!-- Prompts container -->
+            <div class="prompt-container">
+                <div class="prompt-wrapper">
+                    <form action="#" class="prompt-form">
+                        <input type="text" placeholder="Ask AI..." class="prompt-input" required>
+                        <div class="prompt-actions">
+                            <button id="send-prompt-btn" class="material-symbols-rounded">send</button>
+                        </div>
+                    </form>
+                    <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
+                </div>
+                <p class="disclaimer-text">AI can make mistakes, so double check it.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script4.js"></script>
+</body>
+</html>
